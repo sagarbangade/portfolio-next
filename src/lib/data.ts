@@ -10,6 +10,14 @@ export const profile = {
   githubUser: "sagarbangade",
   linkedin: "https://linkedin.com/in/sagar-bangade",
   resume: "/Sagar_Eknath_Bangade_Resume.pdf",
+  sponsors: "https://github.com/sponsors/sagarbangade",
+  youtube: {
+    podcast: "hxM5Ot0G8zE",
+    vlogs: "https://www.youtube.com/channel/UCd93GgRkwFrNJjROYdWSu2w",
+    gaming: "https://www.youtube.com/@GameOSbySagar",
+  },
+  /** LinkedIn post embed URLs (Post menu → Embed this post → the iframe src). */
+  linkedinPosts: [] as string[],
   tagline:
     "I make big applications feel small: splitting monoliths into micro-frontends, cutting bundle sizes, and building component libraries other teams actually want to use.",
   summary:
@@ -23,6 +31,7 @@ export const sections = [
   { id: "work", label: "Work" },
   { id: "github", label: "GitHub" },
   { id: "skills", label: "Skills" },
+  { id: "media", label: "Media" },
   { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ] as const;
@@ -152,7 +161,7 @@ export const featured: (Project & { org: string; tags: string[] })[] = [
 
 const gh = (repo: string) => `https://github.com/sagarbangade/${repo}`;
 
-export const projects: Project[] = [
+const allProjects: Project[] = [
   {
     name: "BusinessForge AI Agent",
     blurb:
@@ -286,6 +295,21 @@ export const projects: Project[] = [
     year: 2023,
   },
 ];
+
+/** Open-source work listed on my GitHub Sponsors page, shown first and badged. */
+export const sponsoredProjects = new Set([
+  "BusinessForge AI Agent",
+  "AI Website Exporter",
+  "ShinobiPath",
+  "Fine-tuning LLMs on a 6 GB GPU",
+  "EquiShare",
+]);
+
+const showcaseOrder = [...sponsoredProjects, "Lumina", "FoodieAI", "Athvan Nara"];
+
+export const projects: Project[] = showcaseOrder
+  .map((name) => allProjects.find((p) => p.name === name))
+  .filter((p): p is Project => Boolean(p));
 
 export const projectFilters: { id: "all" | ProjectCategory; label: string }[] = [
   { id: "all", label: "All" },

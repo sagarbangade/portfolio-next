@@ -21,32 +21,6 @@ const catalog: Photo[] = [
     alt: "Sagar Eknath Bangade at an office desk, with a “my ninja way” Naruto poster on the wall behind",
     position: "50% 42%",
   },
-  {
-    id: "formal",
-    label: "Formal",
-    caption: "Suited up",
-    src: "/photos/formal.jpg",
-    alt: "Sagar Eknath Bangade in a charcoal suit, white shirt and navy tie",
-    position: "50% 34%",
-  },
-  {
-    id: "shinobi-day",
-    label: "Shinobi",
-    caption: "Ninja mode, Hidden Leaf village",
-    src: "/photos/shinobi-day.jpg",
-    alt: "AI-generated portrait of Sagar Eknath Bangade in a cloud-print jacket in an anime-inspired village",
-    position: "50% 30%",
-    ai: true,
-  },
-  {
-    id: "shinobi-dusk",
-    label: "Dusk",
-    caption: "Ninja mode, sunset over the village",
-    src: "/photos/shinobi-dusk.jpg",
-    alt: "AI-generated portrait of Sagar Eknath Bangade at sunset below a mountain carved with faces",
-    position: "50% 36%",
-    ai: true,
-  },
 ];
 
 /** Only the photos that are actually present in /public, so the page never renders a broken image. */

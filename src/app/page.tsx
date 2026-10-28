@@ -6,12 +6,13 @@ import { AvailabilityHint, CopyEmailButton, LocalTime, PaletteHint, RoleTicker }
 import { CommandPalette } from "@/components/command-palette";
 import { ExperienceTabs } from "@/components/experience";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
-import { PhotoSwitcher } from "@/components/photos";
 import { ProjectGrid } from "@/components/work";
 import { SkillsMatrix } from "@/components/skills";
-import { education, experience, featured, formatTenure, monthsSince, profile, skills } from "@/lib/data";
+import { education, experience, featured, formatTenure, monthsSince, profile, projects, skills, sponsoredProjects } from "@/lib/data";
 import { getGitHubSnapshot, languageColors, type GitHubSnapshot } from "@/lib/github";
 import { getPhotos, type Photo } from "@/lib/photos";
+import { getChannels, type Channel } from "@/lib/youtube";
+import { ChannelShelf } from "@/components/youtube";
 
 export const revalidate = 3600;
 
@@ -20,6 +21,7 @@ const hasResume = existsSync(join(process.cwd(), "public", profile.resume.slice(
 export default async function Home() {
   const gh = await getGitHubSnapshot();
   const photos = getPhotos();
+  const channels = await getChannels();
   const careerMonths = monthsSince(experience[experience.length - 1].start);
 
   return (
@@ -41,6 +43,8 @@ export default async function Home() {
       >
         <SkillsMatrix />
       </Section>
+      <Sponsor />
+      <Media shelves={channels} />
       <Education />
       <Contact />
       <Footer />
@@ -259,8 +263,26 @@ function About({ gh, photos }: { gh: GitHubSnapshot; photos: Photo[] }) {
   return (
     <Section id="about" index="01" eyebrow="About" title="Frontend architecture, full-stack range.">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-        <div data-spotlight className="relative self-start overflow-hidden rounded-2xl border border-line bg-elev">
-          {photos.length > 0 && <PhotoSwitcher photos={photos} />}
+        <div className="flex flex-col gap-6 self-start">
+          {photos[0] && (
+            <figure className="group relative mx-auto w-full max-w-sm lg:max-w-none">
+              <div aria-hidden className="absolute -inset-3 rotate-3 rounded-[28px] border border-accent/40 bg-accent-soft transition duration-500 group-hover:rotate-6" />
+              <div className="relative aspect-square overflow-hidden rounded-3xl border border-line-strong shadow-2xl shadow-black/30">
+                <Image
+                  src={photos[0].src}
+                  alt={photos[0].alt}
+                  fill
+                  sizes="(min-width: 1024px) 420px, 90vw"
+                  className="object-cover transition duration-700 group-hover:scale-[1.03]"
+                  style={{ objectPosition: photos[0].position }}
+                />
+              </div>
+              <figcaption className="absolute -bottom-4 left-5 rounded-full border border-line-strong bg-elev px-3 py-1.5 font-mono text-[11px] text-muted shadow-lg">
+                <span className="text-accent">●</span> {photos[0].caption}
+              </figcaption>
+            </figure>
+          )}
+        <div data-spotlight className="relative overflow-hidden rounded-2xl border border-line bg-elev">
           <div className="p-6 sm:p-8">
           <div className="flex items-center gap-4">
             {photos.length === 0 && (
@@ -302,6 +324,7 @@ function About({ gh, photos }: { gh: GitHubSnapshot; photos: Photo[] }) {
             <figcaption className="mt-2 text-xs text-subtle">Not giving up is my ninja way. The motto I code by.</figcaption>
           </figure>
           </div>
+        </div>
         </div>
 
         <div className="space-y-6 text-pretty text-lg leading-relaxed text-muted">
@@ -508,9 +531,134 @@ function GitHubLive({ gh }: { gh: GitHubSnapshot }) {
   );
 }
 
+function Sponsor() {
+  const supported = projects.filter((p) => sponsoredProjects.has(p.name));
+  return (
+    <section id="sponsor" className="scroll-mt-24 py-20 sm:py-28" aria-labelledby="sponsor-title">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div data-reveal className="grid gap-8 rounded-3xl border border-line bg-elev p-6 sm:p-10 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
+          <div>
+            <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-subtle">
+              <span className="text-accent">♥</span>
+              <span className="h-px w-8 bg-line-strong" />
+              Sponsor
+            </p>
+            <h2 id="sponsor-title" className="mt-4 text-balance text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+              Back the open-source work
+            </h2>
+            <p className="mt-4 text-pretty text-muted">
+              Sponsorship on GitHub keeps these projects maintained, documented and free for everyone to use.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <iframe
+                src={`${profile.sponsors}/button`}
+                title="Sponsor sagarbangade"
+                height={32}
+                width={114}
+                className="rounded-md border-0"
+                loading="lazy"
+              />
+              <a href={profile.sponsors} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm text-muted hover:text-fg">
+                View sponsor page <ArrowUpRight className="size-4" />
+              </a>
+            </div>
+            <iframe
+              src={`${profile.sponsors}/card`}
+              title="Sponsor sagarbangade on GitHub"
+              height={225}
+              className="mt-6 hidden w-full max-w-[600px] rounded-xl border-0 bg-white sm:block"
+              loading="lazy"
+            />
+          </div>
+          <ul className="grid content-start gap-2">
+            {supported.map((p) => (
+              <li key={p.name}>
+                <a
+                  href={p.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-start gap-3 rounded-xl border border-line p-4 transition hover:border-line-strong hover:bg-surface/60"
+                >
+                  <GitHubIcon className="mt-0.5 size-4 shrink-0 text-subtle group-hover:text-accent" />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium">{p.name}</span>
+                    <span className="mt-0.5 line-clamp-2 block text-sm text-muted">{p.blurb}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Media({ shelves }: { shelves: Channel[] }) {
+  const yt = profile.youtube;
+  const channels = [
+    { label: "Vlogs", desc: "Life, travel and behind the scenes", href: yt.vlogs },
+    { label: "GameOS by Sagar", desc: "Gaming streams and play-throughs", href: yt.gaming },
+  ].filter(() => shelves.length === 0);
+  return (
+    <Section id="media" index="06" eyebrow="Off the editor" title="Podcast, vlogs and gaming">
+      <div className={`grid gap-4 ${channels.length ? "lg:grid-cols-[1.6fr_1fr]" : ""}`}>
+        <div className="overflow-hidden rounded-2xl border border-line bg-elev">
+          <div className="relative aspect-video">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${yt.podcast}`}
+              title="Podcast episode with Sagar Bangade"
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="absolute inset-0 size-full border-0"
+            />
+          </div>
+          <p className="px-5 py-3.5 text-sm text-muted">
+            <span className="text-fg">Podcast</span> · a conversation about building software and my path into it
+          </p>
+        </div>
+        {channels.length > 0 && <ul className="grid gap-3">
+          {channels.map((c) => (
+            <li key={c.label}>
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noreferrer"
+                data-spotlight
+                className="group flex h-full items-center justify-between gap-4 rounded-2xl border border-line bg-elev p-5 transition hover:border-line-strong"
+              >
+                <span>
+                  <span className="block font-medium">{c.label}</span>
+                  <span className="mt-0.5 block text-sm text-muted">{c.desc}</span>
+                </span>
+                <ArrowUpRight className="size-5 shrink-0 text-subtle transition group-hover:text-accent" />
+              </a>
+            </li>
+          ))}
+        </ul>}
+      </div>
+      {shelves.length > 0 && (
+        <div className="mt-4 grid gap-4">
+          {shelves.map((c) => (
+            <ChannelShelf key={c.id} channel={c} />
+          ))}
+        </div>
+      )}
+      {profile.linkedinPosts.length > 0 && (
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {profile.linkedinPosts.map((src) => (
+            <iframe key={src} src={src} title="LinkedIn post" height={560} loading="lazy" className="w-full rounded-2xl border border-line bg-white" />
+          ))}
+        </div>
+      )}
+    </Section>
+  );
+}
+
 function Education() {
   return (
-    <Section id="education" index="06" eyebrow="Education" title="Foundations">
+    <Section id="education" index="07" eyebrow="Education" title="Foundations">
       <ol className="grid gap-4 sm:grid-cols-2">
         {education.map((e) => (
           <li key={e.title} data-spotlight className="flex gap-4 rounded-2xl border border-line bg-elev p-5 sm:p-6">
@@ -542,7 +690,7 @@ function Contact() {
           <div aria-hidden className="glow absolute -bottom-40 left-1/2 h-[420px] w-[720px] max-w-[150vw] -translate-x-1/2" />
           <div className="relative">
             <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-subtle">
-              <span className="text-accent">07</span>
+              <span className="text-accent">08</span>
               <span className="h-px w-8 bg-line-strong" />
               Contact
             </p>

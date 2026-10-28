@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import { projectFilters, projects, type Project } from "@/lib/data";
+import { projectFilters, projects, sponsoredProjects, type Project } from "@/lib/data";
 import { emitSignal, uiStore, useUi } from "@/lib/ui-store";
 import { GitHubIcon } from "./icons";
 
@@ -14,6 +14,7 @@ export function ProjectGrid() {
       <div role="group" aria-label="Filter projects" className="hide-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
         {projectFilters.map((f) => {
           const count = f.id === "all" ? projects.length : projects.filter((p) => p.categories.includes(f.id as never)).length;
+          if (!count) return null;
           const on = filter === f.id;
           return (
             <button
@@ -59,7 +60,10 @@ function ProjectCard({ project: p }: { project: Project }) {
             {p.name}
           </a>
         </h3>
-        <span className="font-mono text-[11px] text-subtle">{p.year}</span>
+        <span className="flex shrink-0 items-center gap-2 font-mono text-[11px] text-subtle">
+          {sponsoredProjects.has(p.name) && <span className="rounded-full bg-accent-soft px-2 py-0.5 text-accent">♥ sponsored</span>}
+          {p.year}
+        </span>
       </div>
       <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-muted">{p.blurb}</p>
       <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Stack">

@@ -89,6 +89,15 @@ export function Nav() {
               <GitHubIcon className="size-[18px]" />
             </a>
             <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden size-9 place-items-center rounded-lg text-muted transition hover:bg-surface-2 hover:text-fg md:grid"
+              aria-label="LinkedIn profile"
+            >
+              <LinkedInIcon className="size-[18px]" />
+            </a>
+            <a
               href="#contact"
               onClick={go("contact")}
               className="ml-1 hidden rounded-lg bg-fg px-3.5 py-2 text-sm font-medium text-bg transition hover:opacity-90 md:inline-block"
