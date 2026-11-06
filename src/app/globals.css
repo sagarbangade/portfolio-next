@@ -39,6 +39,9 @@
   color-scheme: light;
 }
 
+/* Desktop screens tall enough to pin a full case-study card while the next one slides over it. */
+@custom-variant deck (@media (min-width: 1024px) and (min-height: 720px));
+
 @theme inline {
   --color-bg: var(--bg);
   --color-elev: var(--bg-elev);
@@ -244,5 +247,89 @@ body {
   }
   .js [data-reveal] {
     transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll-driven motion. Tied to scroll position (not timers), so it runs on the
+   compositor, stops when scrolling stops, and reverses when you scroll back.
+   Browsers without scroll timelines keep the simple fade-in reveal above.
+   --------------------------------------------------------------------------- */
+@keyframes sd-rise {
+  from { opacity: 0; transform: translateY(56px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sd-card {
+  from { opacity: 0; transform: translateY(72px) rotate(var(--tilt, -1.5deg)) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sd-hero-out {
+  to { opacity: 0; transform: translateY(-110px) scale(0.96); }
+}
+@keyframes sd-sink {
+  to { translate: 0 160px; }
+}
+@keyframes sd-glow-out {
+  to { scale: 1.35; opacity: 0; }
+}
+@keyframes sd-parallax {
+  from { translate: 0 var(--par, 40px); }
+  to { translate: 0 calc(var(--par, 40px) * -1); }
+}
+@keyframes sd-word {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+@keyframes sd-zoom {
+  from { opacity: 0.15; transform: scale(0.84) translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sd-glow-rise {
+  from { translate: -50% 140px; opacity: 0.2; }
+  to { translate: -50% 0; opacity: 1; }
+}
+@keyframes sd-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Generic reveal: replaces the fade-in with one that follows the scroll. */
+    .js [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      animation: sd-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 340px;
+    }
+
+    /* Hero: content lifts away, the grid sinks and the glow fades as you leave. */
+    .sd-hero { view-timeline-name: --hero; }
+    .sd-hero-out { animation: sd-hero-out linear both; animation-timeline: --hero; animation-range: exit 0% exit 75%; }
+    .sd-hero-grid { animation: sd-sink linear both; animation-timeline: --hero; animation-range: exit 0% exit 100%; }
+    .sd-hero-glow { animation: sd-glow-out linear both; animation-timeline: --hero; animation-range: exit 0% exit 70%; }
+
+    /* Cards rising in, staggered by column. */
+    .sd-card {
+      animation: sd-card linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--col, 0) * 14%) entry calc(85% + var(--col, 0) * 14%);
+    }
+
+    /* Section eyebrow rule draws itself in. */
+    .sd-line { transform-origin: left; animation: sd-line linear both; animation-timeline: view(); animation-range: entry 20% cover 30%; }
+
+    /* Photo drifts at a different speed to the text. */
+    .sd-parallax { animation: sd-parallax linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+
+    /* About copy lights up word by word as you read down. */
+    .sd-read { view-timeline-name: --read; }
+    .sd-word { animation: sd-word linear both; animation-timeline: --read; animation-range: cover var(--s) cover var(--e); }
+
+    /* Contact heading grows into place; its glow rises with it. */
+    .sd-zoom { transform-origin: left bottom; animation: sd-zoom linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+    .sd-glow-rise { animation: sd-glow-rise linear both; animation-timeline: view(); animation-range: entry 0% cover 50%; }
   }
 }

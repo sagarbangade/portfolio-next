@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Command, Menu, Moon, Sun, X } from "lucide-react";
+import { Command, Download, Menu, Moon, Sun, X } from "lucide-react";
 import { profile, sections } from "@/lib/data";
 import { emitSignal, scrollToSection, toggleTheme, uiStore, useUi } from "@/lib/ui-store";
 import { GitHubIcon, LinkedInIcon, Monogram } from "./icons";
@@ -98,11 +98,12 @@ export function Nav() {
               <LinkedInIcon className="size-[18px]" />
             </a>
             <a
-              href="#contact"
-              onClick={go("contact")}
-              className="ml-1 hidden rounded-lg bg-fg px-3.5 py-2 text-sm font-medium text-bg transition hover:opacity-90 md:inline-block"
+              href={profile.resume}
+              download="Sagar_Eknath_Bangade_Resume.pdf"
+              data-testid="nav-resume"
+              className="ml-1 inline-flex items-center gap-1.5 rounded-lg bg-fg px-3 py-2 text-sm font-medium text-bg transition hover:opacity-90"
             >
-              Let&apos;s talk
+              <Download className="size-4" /> <span>Resume</span>
             </a>
             <button
               type="button"
@@ -145,6 +146,9 @@ export function Nav() {
               ))}
             </ul>
             <div className="mt-2 flex items-center gap-2 border-t border-line p-2 pt-3">
+              <a href="#contact" onClick={go("contact")} className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:text-fg">
+                Contact
+              </a>
               <a href={profile.github} target="_blank" rel="noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:text-fg">
                 <GitHubIcon className="size-4" /> GitHub
               </a>

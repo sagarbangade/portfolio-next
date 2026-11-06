@@ -1,27 +1,9 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
-import { Check, Command, Copy } from "lucide-react";
+import { useSyncExternalStore } from "react";
+import { Check, Copy } from "lucide-react";
 import { profile } from "@/lib/data";
-import { copyEmail, emitSignal, uiStore, useUi } from "@/lib/ui-store";
-
-/** Rotates through the stack in the hero. */
-export function RoleTicker({ words = profile.roles }: { words?: string[] }) {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => setI((n) => (n + 1) % words.length), 2200);
-    return () => window.clearInterval(id);
-  }, [words.length]);
-  return (
-    <span className="relative inline-flex min-w-[9ch] text-fg" aria-live="polite">
-      <span key={i} className="role-in">
-        {words[i]}
-      </span>
-      <span className="caret ml-0.5 text-accent">_</span>
-    </span>
-  );
-}
+import { copyEmail, useUi } from "@/lib/ui-store";
 
 /** Wall-clock time in Bengaluru, rendered after mount so server and client markup agree. */
 function useClock<T>(read: () => T, every: number, fallback: T) {
@@ -85,26 +67,6 @@ export function CopyEmailButton({ className = "", size = "md" }: { className?: s
       <span role="status" className="sr-only">
         {copied ? "Copied to clipboard" : ""}
       </span>
-    </button>
-  );
-}
-
-export function PaletteHint({ className = "" }: { className?: string }) {
-  return (
-    <button
-      type="button"
-      data-testid="palette-hint"
-      onClick={() => {
-        uiStore.setState({ paletteOpen: true, menuOpen: false });
-        emitSignal("palette:open", { via: "hero" });
-      }}
-      className={`inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs text-subtle transition hover:text-fg ${className}`}
-    >
-      <span>Press</span>
-      <kbd className="inline-flex items-center gap-0.5 rounded-md border border-line-strong bg-surface px-1.5 py-0.5 font-mono text-[11px] text-muted">
-        <Command className="size-3" />K
-      </kbd>
-      <span>to jump anywhere</span>
     </button>
   );
 }

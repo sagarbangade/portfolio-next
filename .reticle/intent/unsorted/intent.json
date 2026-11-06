@@ -1,0 +1,195 @@
+{
+  "intents": {
+    "inline:clicking-a-core-stack-tile-in-skills-shows-where-f082e890": {
+      "binding": {
+        "kind": "allOf",
+        "predicates": [
+          {
+            "dataMatches": {
+              "skill": "AWS Lambda",
+              "uses": 2
+            },
+            "kind": "signal",
+            "name": "skills:select"
+          },
+          {
+            "contains": "Serverless backend and payments for a US e-learning platform",
+            "kind": "text",
+            "scope": "[data-testid=skill-evidence]"
+          }
+        ]
+      },
+      "declaredAt": 1793949922693,
+      "id": "inline:clicking-a-core-stack-tile-in-skills-shows-where-f082e890",
+      "state": "bound",
+      "statement": "Clicking a core-stack tile in Skills shows where that skill was used; AWS shows its 2 real uses (e-learning serverless case study and the InspironLabs role).",
+      "status": "proposed",
+      "subject": "unsorted",
+      "updatedAt": 1793949922698
+    },
+    "inline:hero-impact-numbers-count-up-on-scroll-but-alway-b5568184": {
+      "binding": {
+        "kind": "allOf",
+        "predicates": [
+          {
+            "contains": "1,100+",
+            "kind": "text",
+            "scope": "[data-testid=hero-stats]"
+          },
+          {
+            "contains": "16 → 19",
+            "kind": "text",
+            "scope": "[data-testid=hero-stats]"
+          },
+          {
+            "contains": "+22%",
+            "kind": "text",
+            "scope": "[data-testid=hero-stats]"
+          },
+          {
+            "contains": "−15%",
+            "kind": "text",
+            "scope": "[data-testid=hero-stats]"
+          },
+          {
+            "absent": true,
+            "kind": "console",
+            "level": "error"
+          }
+        ]
+      },
+      "declaredAt": 1793952054644,
+      "id": "inline:hero-impact-numbers-count-up-on-scroll-but-alway-b5568184",
+      "state": "bound",
+      "statement": "Hero impact numbers count up on scroll but always settle on the real resume figures (1,100+, 16 → 19, +22%, −15%).",
+      "status": "proposed",
+      "subject": "unsorted",
+      "updatedAt": 1793952054651
+    },
+    "inline:scrolling-the-experience-section-flies-the-3d-gl-02cb2d9f": {
+      "binding": {
+        "dataMatches": {
+          "city": "Bengaluru",
+          "id": "inspironlabs"
+        },
+        "kind": "signal",
+        "name": "experience:step"
+      },
+      "declaredAt": 1793944982545,
+      "id": "inline:scrolling-the-experience-section-flies-the-3d-gl-02cb2d9f",
+      "state": "bound",
+      "statement": "Scrolling the Experience section flies the 3D globe to each company's city; reaching the current role lands on Bengaluru and announces InspironLabs.",
+      "status": "proposed",
+      "subject": "unsorted",
+      "updatedAt": 1793944982547
+    },
+    "inline:the-youtube-section-shows-live-channel-shelves-w-320444b6": {
+      "binding": {
+        "kind": "element",
+        "query": {
+          "name": "Most viewed",
+          "role": "button"
+        },
+        "state": "pressed"
+      },
+      "declaredAt": 1793942955958,
+      "id": "inline:the-youtube-section-shows-live-channel-shelves-w-320444b6",
+      "state": "bound",
+      "statement": "The YouTube section shows live channel shelves whose videos can be re-sorted by most viewed.",
+      "status": "proposed",
+      "subject": "unsorted",
+      "updatedAt": 1793942955981
+    },
+    "inline:visitors-can-narrow-the-project-grid-to-ai-and-l-e66f6a91": {
+      "binding": {
+        "kind": "allOf",
+        "predicates": [
+          {
+            "kind": "signal",
+            "name": "projects:filter"
+          },
+          {
+            "equals": "ai",
+            "kind": "state",
+            "path": "projectFilter",
+            "store": "ui"
+          }
+        ]
+      },
+      "declaredAt": 1793206265044,
+      "id": "inline:visitors-can-narrow-the-project-grid-to-ai-and-l-e66f6a91",
+      "state": "bound",
+      "statement": "Visitors can narrow the project grid to AI and LLM projects with one click.",
+      "status": "proposed",
+      "subject": "unsorted",
+      "updatedAt": 1793206265068
+    },
+    "inline:visitors-see-the-r-sum-download-key-impact-numbe-acf0c86f": {
+      "binding": {
+        "kind": "allOf",
+        "predicates": [
+          {
+            "kind": "element",
+            "query": {
+              "testid": "nav-resume"
+            }
+          },
+          {
+            "kind": "element",
+            "query": {
+              "testid": "hero-stats"
+            }
+          },
+          {
+            "contains": "1,100+",
+            "kind": "text"
+          },
+          {
+            "contains": "Modernising a US healthcare admin platform",
+            "kind": "text"
+          },
+          {
+            "contains": "Serverless backend and payments for a US e-learning platform",
+            "kind": "text"
+          },
+          {
+            "contains": "Enterprise AI knowledge base for an FMCG company",
+            "kind": "text"
+          },
+          {
+            "kind": "element",
+            "query": {
+              "testid": "exp-inspironlabs"
+            }
+          },
+          {
+            "kind": "element",
+            "query": {
+              "testid": "exp-immverseai"
+            }
+          },
+          {
+            "kind": "element",
+            "query": {
+              "testid": "exp-asterisc"
+            }
+          },
+          {
+            "absent": true,
+            "kind": "console",
+            "level": "error"
+          }
+        ]
+      },
+      "declaredAt": 1793942800150,
+      "id": "inline:visitors-see-the-r-sum-download-key-impact-numbe-acf0c86f",
+      "state": "bound",
+      "statement": "Visitors see the résumé download, key impact numbers, all three client case studies and every job without clicking tabs, with no console errors.",
+      "status": "proposed",
+      "subject": "unsorted",
+      "updatedAt": 1793942800183
+    }
+  },
+  "subject": "unsorted",
+  "version": 1
+}

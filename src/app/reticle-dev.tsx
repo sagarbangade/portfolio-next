@@ -37,17 +37,11 @@ export function ReticleDev() {
 
         registerCapabilities({
           testids: [
-            'open-palette', 'palette-hint', 'command-palette', 'palette-input', 'theme-toggle', 'menu-toggle',
-            'mobile-menu', 'cta-work', 'cta-resume', 'copy-email', 'exp-panel', 'exp-tab-inspironlabs',
-            'exp-tab-immverseai', 'exp-tab-asterisc', 'project-grid', 'project-card', 'filter-all', 'filter-ai',
-            'filter-fullstack', 'filter-frontend', 'filter-mobile', 'filter-tools', 'skills-search', 'skills-count',
-            'github-recent', 'hero-stats', 'local-time', 'photo-frame', 'photo-tab-desk', 'photo-tab-formal',
-            'photo-tab-shinobi-day', 'photo-tab-shinobi-dusk',
+            'open-palette', 'command-palette', 'palette-input', 'theme-toggle', 'menu-toggle', 'mobile-menu',
+            'nav-resume', 'cta-work', 'cta-resume', 'copy-email', 'hero-stats', 'local-time', 'project-grid',
+            'project-card', 'experience-globe', 'skill-evidence', 'core-react', 'core-aws', 'yt-sort-latest', 'yt-sort-popular', 'yt-sort-liked', 'exp-inspironlabs', 'exp-immverseai', 'exp-asterisc',
           ],
-          signals: [
-            'theme:changed', 'palette:open', 'palette:run', 'menu:open', 'menu:close', 'email:copied',
-            'projects:filter', 'experience:select', 'skills:search', 'section:active', 'photo:select',
-          ],
+          signals: ['theme:changed', 'palette:open', 'palette:run', 'menu:open', 'menu:close', 'email:copied', 'section:active', 'experience:step', 'skills:select'],
           stores: ['ui'],
         });
       },

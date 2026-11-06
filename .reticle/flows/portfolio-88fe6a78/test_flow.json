@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "name": "test_flow",
+  "projectId": "portfolio-88fe6a78",
+  "createdAt": 1788620093867,
+  "steps": [
+    {
+      "tool": "reticle_act",
+      "anchor": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Type / to search"
+      },
+      "args": {
+        "value": "test"
+      },
+      "action": "fill"
+    }
+  ],
+  "startPath": "/"
+}

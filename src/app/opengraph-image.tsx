@@ -24,18 +24,20 @@ export default function OpengraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 26, color: "#a1a1aa" }}>
           <div style={{ width: 14, height: 14, borderRadius: 999, background: "#3ddc84" }} />
-          Open to interesting full-stack work · Bengaluru
+          Full Stack Software Engineer · Bengaluru, India
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 108, fontWeight: 700, letterSpacing: -4, lineHeight: 1 }}>Sagar Eknath</div>
           <div style={{ fontSize: 108, fontWeight: 700, letterSpacing: -4, lineHeight: 1.05, color: "#ff5a1f" }}>Bangade.</div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 34, color: "#a1a1aa" }}>
-            {`${profile.role} @ ${profile.company} · React · Next.js · Node.js · AWS`}
+            React · Next.js · TypeScript · Node.js · Python · AWS
           </div>
         </div>
         <div style={{ display: "flex", gap: 28, fontSize: 24, color: "#71717a" }}>
-          <span>github.com/sagarbangade</span>
-          <span>linkedin.com/in/sagar-bangade</span>
+          <span>1,100+ AWS Lambdas</span>
+          <span>React 16 → 19</span>
+          <span>Micro-frontends</span>
+          <span>RAG / LLM</span>
         </div>
       </div>
     ),

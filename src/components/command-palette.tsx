@@ -35,7 +35,7 @@ function PaletteDialog({ hasResume }: { hasResume: boolean }) {
       { id: "copy-email", label: "Copy email address", hint: profile.email, group: "Actions", icon: <Copy className="size-4" />, run: () => copyEmail(profile.email) },
       { id: "theme", label: "Toggle light / dark theme", hint: "Appearance", group: "Actions", icon: <Moon className="size-4" />, run: toggleTheme, keywords: "dark light mode" },
       ...(hasResume
-        ? [{ id: "resume", label: "Open résumé (PDF)", hint: "Download", group: "Actions", icon: <FileText className="size-4" />, run: () => window.open(profile.resume, "_blank"), keywords: "cv resume" }]
+        ? [{ id: "resume", label: "Download resume (PDF)", hint: "Download", group: "Actions", icon: <FileText className="size-4" />, run: () => window.open(profile.resume, "_blank"), keywords: "cv resume" }]
         : []),
       { id: "github", label: "GitHub", hint: "github.com/sagarbangade", group: "Links", icon: <GitHubIcon className="size-4" />, run: () => window.open(profile.github, "_blank") },
       { id: "linkedin", label: "LinkedIn", hint: "in/sagar-bangade", group: "Links", icon: <LinkedInIcon className="size-4" />, run: () => window.open(profile.linkedin, "_blank") },
@@ -47,7 +47,7 @@ function PaletteDialog({ hasResume }: { hasResume: boolean }) {
       group: "Projects",
       icon: <ArrowUpRight className="size-4" />,
       run: () => window.open(p.live ?? p.repo, "_blank"),
-      keywords: `${p.stack.join(" ")} ${p.categories.join(" ")}`,
+      keywords: p.stack.join(" "),
     }));
     return [...nav, ...actions, ...work];
   }, [hasResume]);

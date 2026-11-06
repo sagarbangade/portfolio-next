@@ -1,0 +1,47 @@
+{
+  "entries": [
+    {
+      "id": "flow:click_overview",
+      "statement": "Verify the follow button can be clicked.",
+      "status": "agreed",
+      "subject": "click-overview"
+    },
+    {
+      "id": "inline:clicking-a-core-stack-tile-in-skills-shows-where-f082e890",
+      "statement": "Clicking a core-stack tile in Skills shows where that skill was used; A…",
+      "status": "proposed",
+      "subject": "unsorted"
+    },
+    {
+      "id": "inline:hero-impact-numbers-count-up-on-scroll-but-alway-b5568184",
+      "statement": "Hero impact numbers count up on scroll but always settle on the real re…",
+      "status": "proposed",
+      "subject": "unsorted"
+    },
+    {
+      "id": "inline:scrolling-the-experience-section-flies-the-3d-gl-02cb2d9f",
+      "statement": "Scrolling the Experience section flies the 3D globe to each company's c…",
+      "status": "proposed",
+      "subject": "unsorted"
+    },
+    {
+      "id": "inline:the-youtube-section-shows-live-channel-shelves-w-320444b6",
+      "statement": "The YouTube section shows live channel shelves whose videos can be re-s…",
+      "status": "proposed",
+      "subject": "unsorted"
+    },
+    {
+      "id": "inline:visitors-can-narrow-the-project-grid-to-ai-and-l-e66f6a91",
+      "statement": "Visitors can narrow the project grid to AI and LLM projects with one cl…",
+      "status": "proposed",
+      "subject": "unsorted"
+    },
+    {
+      "id": "inline:visitors-see-the-r-sum-download-key-impact-numbe-acf0c86f",
+      "statement": "Visitors see the résumé download, key impact numbers, all three client…",
+      "status": "proposed",
+      "subject": "unsorted"
+    }
+  ],
+  "version": 1
+}

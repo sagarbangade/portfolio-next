@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "name": "click_overview",
+  "projectId": "portfolio-88fe6a78",
+  "createdAt": 1788620796380,
+  "steps": [
+    {
+      "tool": "reticle_act",
+      "anchor": {
+        "kind": "role",
+        "role": "button",
+        "name": "Follow"
+      },
+      "args": {},
+      "action": "click"
+    }
+  ],
+  "startPath": "/",
+  "intent": "Verify the follow button can be clicked.",
+  "intentId": "flow:click_overview"
+}

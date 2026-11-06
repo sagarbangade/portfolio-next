@@ -1,0 +1,17 @@
+{
+  "intents": {
+    "flow:click_overview": {
+      "declaredAt": 1788620796380,
+      "id": "flow:click_overview",
+      "state": "declared",
+      "statement": "Verify the follow button can be clicked.",
+      "status": "agreed",
+      "subject": "click-overview",
+      "surface": {
+        "flow": "click_overview"
+      }
+    }
+  },
+  "subject": "click-overview",
+  "version": 1
+}

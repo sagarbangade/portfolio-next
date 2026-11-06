@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "origin": "failed-assert",
+  "expected": "element \"Most viewed\"",
+  "observed": "element exists but not in state 'pressed'",
+  "steps": [
+    {
+      "tool": "reticle_act",
+      "anchor": {
+        "kind": "testid",
+        "value": "yt-sort-popular",
+        "source": {
+          "file": "src/components/youtube.tsx",
+          "line": 34,
+          "column": 12
+        }
+      },
+      "action": "click"
+    }
+  ],
+  "id": "1793942983250-yt-sort-popular-8508d595",
+  "createdAt": 1793942983253,
+  "seen": 1,
+  "lastSeenAt": 1793942983253
+}

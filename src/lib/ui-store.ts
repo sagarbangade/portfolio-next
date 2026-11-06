@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import type { ProjectCategory, SectionId } from "./data";
+import type { SectionId } from "./data";
 
 export type Theme = "dark" | "light";
 
@@ -9,10 +9,7 @@ export type UiState = {
   theme: Theme;
   paletteOpen: boolean;
   menuOpen: boolean;
-  projectFilter: "all" | ProjectCategory;
   activeSection: SectionId | "top";
-  activeExperience: string;
-  activePhoto: string;
   emailCopied: boolean;
 };
 
@@ -22,10 +19,7 @@ let state: UiState = {
   theme: "dark",
   paletteOpen: false,
   menuOpen: false,
-  projectFilter: "all",
   activeSection: "top",
-  activeExperience: "inspironlabs",
-  activePhoto: "desk",
   emailCopied: false,
 };
 
