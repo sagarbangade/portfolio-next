@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "origin": "failed-assert",
+  "expected": "signal education:step",
+  "observed": "signal \"education:step\" never fired",
+  "steps": [
+    {
+      "tool": "reticle_act",
+      "anchor": {
+        "kind": "testid",
+        "value": "edu-btech",
+        "source": {
+          "file": "src/components/education-journey.tsx",
+          "line": 204,
+          "column": 12
+        }
+      },
+      "action": "scrollIntoView"
+    }
+  ],
+  "id": "1793954734303-edu-btech-d17352da",
+  "createdAt": 1793954734305,
+  "seen": 1,
+  "lastSeenAt": 1793954734305
+}

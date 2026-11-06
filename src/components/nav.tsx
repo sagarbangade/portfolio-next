@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Command, Download, Menu, Moon, Sun, X } from "lucide-react";
+import { Command, Download, Heart, Menu, Moon, Sun, X } from "lucide-react";
 import { profile, sections } from "@/lib/data";
 import { emitSignal, scrollToSection, toggleTheme, uiStore, useUi } from "@/lib/ui-store";
 import { GitHubIcon, LinkedInIcon, Monogram } from "./icons";
@@ -33,7 +33,7 @@ export function Nav() {
         >
           <a href="#top" onClick={go("top")} className="flex items-center gap-2.5 rounded-lg" aria-label="Back to top">
             <Monogram />
-            <span className="hidden text-sm font-medium tracking-tight sm:inline">{profile.shortName}</span>
+            <span className="hidden whitespace-nowrap text-sm font-medium tracking-tight sm:inline lg:hidden 2xl:inline">{profile.shortName}</span>
           </a>
 
           <ul className="hidden items-center gap-0.5 lg:flex">
@@ -79,6 +79,17 @@ export function Nav() {
             >
               {theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
             </button>
+            <a
+              href={profile.sponsors}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="nav-sponsor"
+              className="group hidden h-9 items-center gap-1.5 rounded-lg border border-line px-2.5 text-sm text-muted transition hover:border-[#db61a2]/50 hover:bg-[#db61a2]/10 hover:text-fg md:inline-flex"
+              aria-label="Sponsor my open-source work on GitHub"
+            >
+              <Heart className="size-4 text-[#db61a2] transition group-hover:scale-110 group-hover:fill-[#db61a2]" />
+              <span className="hidden xl:inline">Sponsor</span>
+            </a>
             <a
               href={profile.github}
               target="_blank"
@@ -151,6 +162,9 @@ export function Nav() {
               </a>
               <a href={profile.github} target="_blank" rel="noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:text-fg">
                 <GitHubIcon className="size-4" /> GitHub
+              </a>
+              <a href={profile.sponsors} target="_blank" rel="noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:text-fg">
+                <Heart className="size-4 text-[#db61a2]" /> Sponsor
               </a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:text-fg">
                 <LinkedInIcon className="size-4" /> LinkedIn

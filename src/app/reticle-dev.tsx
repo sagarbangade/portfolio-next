@@ -39,9 +39,9 @@ export function ReticleDev() {
           testids: [
             'open-palette', 'command-palette', 'palette-input', 'theme-toggle', 'menu-toggle', 'mobile-menu',
             'nav-resume', 'cta-work', 'cta-resume', 'copy-email', 'hero-stats', 'local-time', 'project-grid',
-            'project-card', 'experience-globe', 'skill-evidence', 'core-react', 'core-aws', 'yt-sort-latest', 'yt-sort-popular', 'yt-sort-liked', 'exp-inspironlabs', 'exp-immverseai', 'exp-asterisc',
+            'project-card', 'experience-globe', 'education-panel', 'edu-btech', 'edu-masai', 'skill-evidence', 'core-react', 'core-aws', 'yt-sort-latest', 'yt-sort-popular', 'yt-sort-liked', 'exp-inspironlabs', 'exp-immverseai', 'exp-asterisc',
           ],
-          signals: ['theme:changed', 'palette:open', 'palette:run', 'menu:open', 'menu:close', 'email:copied', 'section:active', 'experience:step', 'skills:select'],
+          signals: ['theme:changed', 'palette:open', 'palette:run', 'menu:open', 'menu:close', 'email:copied', 'section:active', 'experience:step', 'skills:select', 'education:step'],
           stores: ['ui'],
         });
       },

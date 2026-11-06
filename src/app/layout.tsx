@@ -92,7 +92,7 @@ const person = {
   familyName: "Bangade",
   jobTitle: profile.role,
   description: profile.summary,
-  image: { "@type": "ImageObject", url: `${siteUrl}/photos/desk.jpg`, caption: profile.name },
+  image: { "@type": "ImageObject", url: `${siteUrl}/photos/sagar2.png`, caption: profile.name },
   url: siteUrl,
   email: `mailto:${profile.email}`,
   nationality: { "@type": "Country", name: "India" },
@@ -109,9 +109,9 @@ const person = {
     { "@type": "CollegeOrUniversity", name: "G. H. Raisoni Institute of Engineering and Technology", address: "Nagpur, India" },
     { "@type": "EducationalOrganization", name: "Nagpur Institute of Technology Polytechnic", address: "Nagpur, India" },
   ],
-  hasCredential: education.slice(0, 2).map((e) => ({
+  hasCredential: education.filter((e) => e.kind !== "course").map((e) => ({
     "@type": "EducationalOccupationalCredential",
-    credentialCategory: e.title.startsWith("B.Tech") ? "degree" : "diploma",
+    credentialCategory: e.kind,
     name: e.title,
     recognizedBy: { "@type": "EducationalOrganization", name: e.school },
   })),

@@ -66,6 +66,32 @@
       "subject": "unsorted",
       "updatedAt": 1793952054651
     },
+    "inline:scrolling-the-education-section-swaps-the-pinned-ae6b59f3": {
+      "binding": {
+        "kind": "allOf",
+        "predicates": [
+          {
+            "dataMatches": {
+              "id": "btech"
+            },
+            "kind": "signal",
+            "name": "education:step"
+          },
+          {
+            "contains": "G. H. Raisoni Institute of Engineering and Technology",
+            "kind": "text",
+            "scope": "[data-testid=education-panel]"
+          }
+        ]
+      },
+      "declaredAt": 1793954712751,
+      "id": "inline:scrolling-the-education-section-swaps-the-pinned-ae6b59f3",
+      "state": "bound",
+      "statement": "Scrolling the Education section swaps the pinned photo panel to each school in turn; reaching the B.Tech card shows G. H. Raisoni with its photo credit.",
+      "status": "proposed",
+      "subject": "unsorted",
+      "updatedAt": 1793954712762
+    },
     "inline:scrolling-the-experience-section-flies-the-3d-gl-02cb2d9f": {
       "binding": {
         "dataMatches": {
